@@ -1,0 +1,7 @@
+datos/*.geojson
+datos/*.tif
+ejemplo_sintetico/*.tif
+__pycache__/
+*.pyc
+resultado_zonal*
+perfiles.png
