@@ -33,6 +33,7 @@ ETOPO1 (10') ──► perfiles cada 2 km, interpolación bilineal:
 | `distancias_paises.py` | Tabla I: distancia geodésica Chernobyl → centroide de cada país | Natural Earth (se descarga solo) |
 | `zonal_cs137.py` | Intensidad promedio por país, clase y mapa (Tabla I, Fig. 3) | **Matriz de Cs-137** en Bq/m² (GeoTIFF; ver Datos) |
 | `perfiles_laguna_verde.py` | Tabla III y perfiles topográficos Alpes vs. Laguna Verde (Fig. 6) | DEM para los perfiles (ETOPO1 o SRTM) |
+| `puntos_a_raster.py` | Interpola observaciones puntuales (IDW) a un GeoTIFF para el paso zonal | CSV de observaciones (p. ej. NILU) |
 | `verificar_paper.py` | Comprueba que el código reproduce las Tablas I, II y III | Natural Earth |
 | `demo_sintetico.py` | Corre el flujo completo con datos **inventados**, solo para probar el código | Natural Earth |
 
@@ -83,6 +84,31 @@ Los datos originales no se redistribuyen aquí. Fuentes citadas en el artículo:
 
 Lo que **no** se puede verificar sin el atlas: las intensidades promedio por país (columna "Clase" de la Tabla I) y los
 valores de la validación (Austria 21.0 kBq/m², etc.). Ese paso está implementado y probado solo con datos sintéticos.
+
+## Prueba con datos reales (NILU, no es el atlas)
+
+Con la base puntual de Evangeliou (2025), DOI [10.34355/NILU.00321](https://doi.org/10.34355/NILU.00321) (11,334 observaciones
+de 137Cs; los datos **no** se redistribuyen aquí), se interpoló por IDW a una malla de 5 km (`puntos_a_raster.py`, k = 8,
+potencia 2, radio 75 km, tope 120,000 Bq/m²) y se corrió `zonal_cs137.py`:
+
+| País | Distancia (km) | Puntos en el país | Media (Bq/m²) | Clase obtenida | Clase del artículo |
+|---|---:|---:|---:|---|---|
+| República Checa | 1,061 | 101 | 6,768 | 6,000–28,000 | 28,000–120,000 |
+| Austria | 1,230 | 113 | 30,246 | 28,000–120,000 | 28,000–120,000 ✓ |
+| Eslovenia | 1,265 | **1** | 27,426 | 6,000–28,000 | 28,000–120,000 |
+| Alemania | 1,375 | 304 | 6,929 | 6,000–28,000 | 6,000–28,000 ✓ |
+| Italia | 1,660 | 443 | 9,727 | 6,000–28,000 | < 6,000 |
+| Suiza | 1,671 | 57 | 5,313 | < 6,000 | 6,000–28,000 |
+| Luxemburgo | 1,704 | **1** | 6,215 | 6,000–28,000 | < 6,000 |
+| Bélgica | 1,779 | 48 | 7,964 | 6,000–28,000 | < 6,000 |
+| Francia | 2,079 | 93 | 8,493 | 6,000–28,000 | < 6,000 |
+
+Coinciden 2 de 9 clases (resultados en `resultados_nilu/`). **Esto no valida ni contradice el artículo:**
+la base de NILU no es el atlas (otros puntos, otra interpolación) y está centrada en la antigua Unión Soviética;
+en Europa occidental tiene pocos puntos (Eslovenia y Luxemburgo, uno cada uno), así que el IDW depende de muy
+pocos datos. Lo que sí demuestra es que la cadena completa (puntos → malla → zonal → clase → mapa) corre con datos reales.
+El promedio de Austria (≈ 30 kBq/m²) queda por arriba del valor publicado por Bossew et al. (21.0 kBq/m²), coherente
+con el sesgo al alza que el propio artículo describe cuando solo se promedian celdas con dato.
 
 ## Lo que se dedujo (y por qué)
 
