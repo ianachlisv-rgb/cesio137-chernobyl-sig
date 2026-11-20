@@ -2,7 +2,7 @@
 
 Código que reconstruye el flujo de trabajo del artículo
 **"Reconstrucción geoespacial del fallout atmosférico de Chernobyl (1986–2020): análisis morfoestructural y de riesgo"**
-(Ian A. Sandoval-Valderrábano, BUAP, Facultad de Ingeniería).
+(Ian A. Sandoval-Valderrábano, BUAP, Facultad de Ingeniería). El PDF está en [`paper/Chernobyl_Cs137_IEEE.pdf`](paper/Chernobyl_Cs137_IEEE.pdf) (6 páginas, formato IEEE).
 
 El artículo se hizo con herramientas SIG de escritorio. Este repositorio no es el proyecto original: es una
 **reconstrucción del proceso a partir de lo que el artículo describe**, escrita en Python y comprobada contra
