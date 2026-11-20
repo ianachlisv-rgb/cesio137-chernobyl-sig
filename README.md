@@ -31,7 +31,7 @@ ETOPO1 (10') ──► perfiles cada 2 km, interpolación bilineal:
 | `parametros.py` | Constantes del artículo (fuente, semivida, clases, CNLV, zonas PERE…) | No |
 | `decaimiento.py` | Ec. (1), Tabla II y año en que el pico cruza el umbral de 37 kBq/m² | No |
 | `distancias_paises.py` | Tabla I: distancia geodésica Chernobyl → centroide de cada país | Natural Earth (se descarga solo) |
-| `zonal_cs137.py` | Intensidad promedio por país, clase y mapa (Tabla I, Fig. 3) | **Atlas de Cs-137** (GeoTIFF) |
+| `zonal_cs137.py` | Intensidad promedio por país, clase y mapa (Tabla I, Fig. 3) | **Matriz de Cs-137** en Bq/m² (GeoTIFF; ver Datos) |
 | `perfiles_laguna_verde.py` | Tabla III y perfiles topográficos Alpes vs. Laguna Verde (Fig. 6) | DEM para los perfiles (ETOPO1 o SRTM) |
 | `verificar_paper.py` | Comprueba que el código reproduce las Tablas I, II y III | Natural Earth |
 | `demo_sintetico.py` | Corre el flujo completo con datos **inventados**, solo para probar el código | Natural Earth |
@@ -61,7 +61,11 @@ python demo_sintetico.py
 Los datos originales no se redistribuyen aquí. Fuentes citadas en el artículo:
 
 - **Atlas de deposición de Cs-137 en Europa:** De Cort, M. et al. (1998), *Atlas of Caesium Deposition on Europe after the
-  Chernobyl Accident*, EUR 16733, Comisión Europea / JRC. Se necesita como GeoTIFF en Bq/m² (el script lo reproyecta).
+  Chernobyl Accident*, EUR 16733, Comisión Europea / JRC. **Ojo:** el atlas oficial se publicó como mapas impresos y, según
+  el grupo de NILU (Evangeliou et al.), no está disponible en formato digital. El artículo no detalla cómo se obtuvo la
+  matriz en Bq/m² que se usó, así que `zonal_cs137.py` pide que tú aportes esa matriz como GeoTIFF (Bq/m², cualquier CRS; el
+  script la reproyecta). Una alternativa pública y digital, pero **distinta del atlas** (otra interpolación, por lo que no
+  reproduciría la Tabla I), es la base reconstruida de NILU: Evangeliou (2025), DOI 10.34355/NILU.00321.
 - **SRTM GL3 (3″, ≈ 90 m):** NASA JPL, OpenTopography, <https://doi.org/10.5069/G9SRTMGL3>.
 - **ETOPO1 (1′):** Amante y Eakins (2009), NOAA NGDC. En el artículo se reescala a 10′ para los perfiles.
 - **Límites de países:** Natural Earth 1:10m (lo descarga `distancias_paises.py`).
