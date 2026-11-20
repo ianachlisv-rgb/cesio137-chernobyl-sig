@@ -1,8 +1,8 @@
 # Fallout de Chernobyl (Cs-137): flujo de trabajo reproducible en Python
 
 Código que reconstruye el flujo de trabajo del artículo
-**"Reconstrucción geoespacial del fallout atmosférico de Chernobyl (1986–2020): análisis morfoestructural y de riesgo"**
-(Ian A. Sandoval-Valderrábano, BUAP, Facultad de Ingeniería). El PDF está en [`paper/Chernobyl_Cs137_IEEE.pdf`](paper/Chernobyl_Cs137_IEEE.pdf) (6 páginas, formato IEEE).
+**"Reconstrucción geoespacial de la deposición de Cs-137 tras Chernobyl en Europa Central: distancia, relieve y decaimiento, con una extensión a Laguna Verde"**
+(Ian A. Sandoval-Valderrábano, BUAP, Facultad de Ingeniería). El PDF está en [`paper/Chernobyl_Cs137_IEEE.pdf`](paper/Chernobyl_Cs137_IEEE.pdf) (6 páginas, formato IEEE) y sus fuentes LaTeX en [`paper/overleaf/`](paper/overleaf/) (se compila en Overleaf con `main.tex`). Es una versión reescrita de un artículo anterior con la misma metodología; la versión anterior sigue en el historial de git (commit `567b5ee`).
 
 El artículo se hizo con herramientas SIG de escritorio. Este repositorio no es el proyecto original: es una
 **reconstrucción del proceso a partir de lo que el artículo describe**, escrita en Python y comprobada contra
